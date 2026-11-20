@@ -3,8 +3,14 @@ Unicode true
 !include "x64.nsh"
 !include "WordFunc.nsh"
 
-!define APP "Photo Import"
-!define VERSION "2.1"
+!define APP "Apple Photo Importer"
+!define FULLNAME "Apple Photo Importer for Windows"
+!define PUBLISHER "Magnetic WP"
+!define WEBSITE "https://www.magneticwp.com/"
+!define DONATE "https://ko-fi.com/magneticwp"
+!define LEGACY "Photo Import"
+!define STATE "Software\Photo Import"
+!define VERSION "2.2"
 !define EXE "PhotoImport.exe"
 !define CLSID "{7C3A5B1E-92D4-4F6A-B0E8-5D2F4A9C6E31}"
 !define THUMBCAT "{e357fccd-a995-4576-b01f-234630154e96}"
@@ -13,12 +19,12 @@ Unicode true
 !define ARP "Software\Microsoft\Windows\CurrentVersion\Uninstall\PhotoImport"
 !define CLASSES "Software\Classes"
 
-Name "${APP}"
+Name "${FULLNAME}"
 OutFile "dist\PhotoImportSetup.exe"
 InstallDir "$PROGRAMFILES64\${APP}"
 RequestExecutionLevel admin
 SetCompressor /SOLID lzma
-BrandingText "${APP} ${VERSION}"
+BrandingText "${FULLNAME} ${VERSION} by ${PUBLISHER}"
 
 !define MUI_ICON "assets\app.ico"
 !define MUI_UNICON "assets\app.ico"
@@ -56,14 +62,14 @@ FunctionEnd
   ReadRegStr $0 HKLM "${KEY}" ""
   StrCmp $0 "" +3
   StrCmp $0 "${CLSID}" +2
-  WriteRegStr HKLM "Software\${APP}\Previous" "${NAME}" "$0"
+  WriteRegStr HKLM "${STATE}\Previous" "${NAME}" "$0"
   WriteRegStr HKLM "${KEY}" "" "${CLSID}"
 !macroend
 
 !macro Release KEY NAME
   ReadRegStr $0 HKLM "${KEY}" ""
   StrCmp $0 "${CLSID}" 0 +6
-  ReadRegStr $1 HKLM "Software\${APP}\Previous" "${NAME}"
+  ReadRegStr $1 HKLM "${STATE}\Previous" "${NAME}"
   StrCmp $1 "" +3
   WriteRegStr HKLM "${KEY}" "" "$1"
   Goto +2
@@ -121,6 +127,20 @@ Section "Install"
   CreateDirectory "$SMPROGRAMS\${APP}"
   CreateShortcut "$SMPROGRAMS\${APP}\${APP}.lnk" "$INSTDIR\${EXE}"
   CreateShortcut "$SMPROGRAMS\${APP}\Uninstall ${APP}.lnk" "$INSTDIR\Uninstall.exe"
+  WriteINIStr "$SMPROGRAMS\${APP}\${PUBLISHER} website.url" "InternetShortcut" "URL" "${WEBSITE}"
+  WriteINIStr "$SMPROGRAMS\${APP}\Support this app.url" "InternetShortcut" "URL" "${DONATE}"
+
+  ; Versions before 2.2 were installed as "Photo Import": remove their shortcuts and folder
+  StrCpy $R8 "$PROGRAMFILES64\${LEGACY}"
+  ${If} $INSTDIR != $R8
+    Delete "$DESKTOP\${LEGACY}.lnk"
+    RMDir /r "$SMPROGRAMS\${LEGACY}"
+    Delete /REBOOTOK "$R8\*.exe"
+    Delete /REBOOTOK "$R8\*.dll"
+    Delete /REBOOTOK "$R8\*.old"
+    Delete /REBOOTOK "$R8\*.txt"
+    RMDir /REBOOTOK "$R8"
+  ${EndIf}
 
   ; HEIC thumbnail handler for File Explorer (a .NET class, registered the way regasm /codebase does it)
   ${WordReplace} "$INSTDIR" "\" "/" "+" $1
@@ -158,7 +178,10 @@ Section "Install"
   !insertmacro HeicType ".heic"
   !insertmacro HeicType ".heif"
 
-  WriteRegStr HKLM "${ARP}" "DisplayName" "${APP}"
+  WriteRegStr HKLM "${ARP}" "DisplayName" "${FULLNAME}"
+  WriteRegStr HKLM "${ARP}" "Publisher" "${PUBLISHER}"
+  WriteRegStr HKLM "${ARP}" "URLInfoAbout" "${WEBSITE}"
+  WriteRegStr HKLM "${ARP}" "HelpLink" "${WEBSITE}"
   WriteRegStr HKLM "${ARP}" "DisplayVersion" "${VERSION}"
   WriteRegStr HKLM "${ARP}" "DisplayIcon" "$INSTDIR\${EXE}"
   WriteRegStr HKLM "${ARP}" "InstallLocation" "$INSTDIR"
@@ -181,7 +204,7 @@ Section "Uninstall"
   DeleteRegKey HKLM "${CLASSES}\${PROGID}"
   DeleteRegKey HKLM "${CLASSES}\Applications\${EXE}"
   DeleteRegKey HKLM "${ARP}"
-  DeleteRegKey HKLM "Software\${APP}"
+  DeleteRegKey HKLM "${STATE}"
 
   Delete "$DESKTOP\${APP}.lnk"
   RMDir /r "$SMPROGRAMS\${APP}"

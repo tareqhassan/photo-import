@@ -5,7 +5,8 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 
-[assembly: AssemblyTitle("Photo Import HEIC thumbnails")]
+[assembly: AssemblyTitle("Apple Photo Importer HEIC thumbnails")]
+[assembly: AssemblyCompany("Magnetic WP")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: ComVisible(false)]
 

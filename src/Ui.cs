@@ -298,7 +298,7 @@ namespace PhotoImport
                 g.DrawLines(pen, new[] { new PointF(cx - q, b - q), new PointF(cx, b), new PointF(cx + q, b - q) });
                 g.DrawLine(pen, cx - logo * 0.24f, lr.Y + logo * 0.78f, cx + logo * 0.24f, lr.Y + logo * 0.78f);
             }
-            Theme.Draw(g, "Photo Import", Theme.Font(15f, true), Theme.Text, new Rectangle(lr.Right + Theme.S(12), 0, Theme.S(240), Height), Theme.Left);
+            Theme.Draw(g, "Apple Photo Importer", Theme.Font(15f, true), Theme.Text, new Rectangle(lr.Right + Theme.S(12), 0, Theme.S(320), Height), Theme.Left);
 
             Font strong = Theme.Font(11.5f, true), plain = Theme.Font(11.5f, false);
             int wd = Device.Length > 0 ? Theme.Width(Device, strong) + Theme.S(10) : 0, ws = Theme.Width(Status, plain);

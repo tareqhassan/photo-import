@@ -7,7 +7,7 @@ cd "$(dirname "$0")"
 HEIF_WHEEL_VERSION=1.8.1
 REFS="-r:System.Windows.Forms.dll -r:System.Drawing.dll"
 FONTS="-resource:assets/AfacadFlux-Regular.ttf,AfacadFlux-Regular.ttf -resource:assets/AfacadFlux-SemiBold.ttf,AfacadFlux-SemiBold.ttf"
-APP="src/Model.cs src/Demo.cs src/Wpd.cs src/Ui.cs src/MainForm.cs src/Heif.cs src/Viewer.cs"
+APP="src/AssemblyInfo.cs src/Model.cs src/Demo.cs src/Wpd.cs src/Ui.cs src/MainForm.cs src/Heif.cs src/Viewer.cs"
 
 mkdir -p build dist vendor
 

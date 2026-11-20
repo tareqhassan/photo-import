@@ -1,6 +1,6 @@
 # Third-party notices
 
-Photo Import's own source code is licensed under the GNU General Public License v3.0 (see `LICENSE`).
+The source code of Apple Photo Importer for Windows (by Magnetic WP) is licensed under the GNU General Public License v3.0 (see `LICENSE`).
 
 The installer (`PhotoImportSetup.exe`) also contains the components below. They are not modified. The decoder DLLs are taken unchanged from the Windows x64 wheel of [pillow-heif](https://github.com/bigcat88/pillow_heif) 1.8.1, whose own list of bundled licences is installed next to the app as `Third-party licenses.txt`.
 
@@ -11,7 +11,7 @@ The installer (`PhotoImportSetup.exe`) also contains the components below. They 
 | x265 | 4.3 | GPL-2.0 | https://github.com/Multicorewareinc/x265/tree/4.3 |
 | MinGW-w64 runtime (libgcc, libstdc++, libwinpthread) | as shipped in the wheel | GPL-3.0 with GCC Runtime Library Exception; MIT and BSD | https://sourceforge.net/p/mingw-w64/mingw-w64/ |
 
-x265 is an encoder. Photo Import only decodes and never calls it; it is present because the prebuilt libheif DLL links against it.
+x265 is an encoder. The app only decodes and never calls it; it is present because the prebuilt libheif DLL links against it.
 
 ## Font
 

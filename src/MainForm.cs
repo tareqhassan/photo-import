@@ -30,7 +30,7 @@ namespace PhotoImport
         {
             string text = Convert.ToString(error);
             try { File.WriteAllText(Path.Combine(Path.GetTempPath(), "PhotoImport-error.txt"), text); } catch { }
-            MessageBox.Show(text.Length > 1500 ? text.Substring(0, 1500) : text, "Photo Import could not start", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(text.Length > 1500 ? text.Substring(0, 1500) : text, "Apple Photo Importer could not start", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.NoInlining)]
@@ -41,7 +41,7 @@ namespace PhotoImport
             Application.SetCompatibleTextRenderingDefault(false);
             Application.ThreadException += delegate(object s, ThreadExceptionEventArgs e)
             {
-                MessageBox.Show(e.Exception.Message, "Photo Import", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(e.Exception.Message, "Apple Photo Importer", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             };
             foreach (string a in args)
             {
@@ -106,7 +106,7 @@ namespace PhotoImport
             WpdDevice.Log = Note;
             Theme.LoadFonts();
 
-            Text = "Photo Import";
+            Text = "Apple Photo Importer";
             BackColor = Theme.Bg;
             ForeColor = Theme.Text;
             AutoScaleMode = AutoScaleMode.None;

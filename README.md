@@ -1,4 +1,6 @@
-# Photo Import
+# Apple Photo Importer for Windows
+
+by [Magnetic WP](https://www.magneticwp.com/)
 
 A Windows desktop app that copies photos and videos from an iPhone to a PC over USB, shows HEIC thumbnails in File Explorer, and includes a photo viewer. No iTunes, no iCloud, no Microsoft Store add-ons.
 
@@ -29,7 +31,7 @@ A Windows desktop app that copies photos and videos from an iPhone to a PC over 
 
 1. Download `PhotoImportSetup.exe` from the [Releases](../../releases) page.
 2. Run it. The installer is not code-signed, so Windows SmartScreen shows a warning: choose **More info**, then **Run anyway**.
-3. Plug in the iPhone, unlock it, tap **Allow** on the phone, and open **Photo Import** from the desktop shortcut.
+3. Plug in the iPhone, unlock it, tap **Allow** on the phone, and open **Apple Photo Importer** from the desktop shortcut.
 
 Requirements: 64-bit Windows 10 or 11 (uses the .NET Framework 4.8 that ships with Windows).
 
@@ -78,10 +80,18 @@ Run the app with `--demo` to try the interface with a simulated phone.
 | `src/Thumb.cs` | The File Explorer thumbnail handler |
 | `installer.nsi` | NSIS installer script |
 
+## Author and support
+
+Made by [Magnetic WP](https://www.magneticwp.com/).
+
+If this app saved you some time, you can support its development on [Ko-fi](https://ko-fi.com/magneticwp).
+
 ## Licence
 
-Photo Import is free software, released under the [GNU General Public License v3.0](LICENSE).
+Copyright (C) 2026 Magnetic WP.
+
+Apple Photo Importer for Windows is free software, released under the [GNU General Public License v3.0](LICENSE).
 
 The installer bundles third-party components under their own licences (libheif, libde265, x265, the MinGW-w64 runtime and the Afacad Flux font). See [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
 
-iPhone is a trademark of Apple Inc. This project is not affiliated with or endorsed by Apple.
+Apple and iPhone are trademarks of Apple Inc. This project is an independent tool and is not affiliated with, sponsored by or endorsed by Apple.
