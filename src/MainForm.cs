@@ -136,6 +136,7 @@ namespace PhotoImport
             Controls.Add(sidebar);
             Controls.Add(footer);
             Controls.Add(header);
+            Controls.Add(new CreditsBar());
 
             footer.SetDest(dest);
             header.Refresh.Click += delegate { Reconnect("Looking for a phone…"); };

@@ -4,4 +4,4 @@ using System.Reflection;
 [assembly: AssemblyProduct("Apple Photo Importer for Windows")]
 [assembly: AssemblyCompany("Magnetic WP")]
 [assembly: AssemblyCopyright("Copyright (C) 2026 Magnetic WP")]
-[assembly: AssemblyVersion("2.2.0.0")]
+[assembly: AssemblyVersion("2.3.0.0")]
