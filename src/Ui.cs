@@ -867,10 +867,11 @@ namespace PhotoImport
         {
             using (var pen = new Pen(Theme.Line)) g.DrawLine(pen, 0, 0, Width, 0);
             Font plain = Theme.Font(10.5f, false), strong = Theme.Font(10.5f, true);
-            string name = "Apple Photo Importer for Windows " + Version + "  \u00B7  by ", author = "Magnetic WP", donate = "Support this app on Ko-fi";
+            string name = "Apple Photo Importer for Windows " + Version + "  \u00B7  by", author = "Magnetic WP", donate = "Support this app on Ko-fi";
             int x = Theme.S(24), wn = Theme.Width(name, plain), wa = Theme.Width(author, strong), wd = Theme.Width(donate, strong);
             Theme.Draw(g, name, plain, Theme.Muted, new Rectangle(x, 0, wn + 2, Height), Theme.Left);
-            authorRect = new Rectangle(x + wn + Theme.S(5), 0, wa + 4, Height);
+            int space = Math.Max(Theme.S(3), Theme.Width("x x", plain) - Theme.Width("xx", plain));
+            authorRect = new Rectangle(x + wn + space, 0, wa + 4, Height);
             donateRect = new Rectangle(Width - Theme.S(24) - wd - 4, 0, wd + 4, Height);
             Theme.Draw(g, author, strong, hover == 1 ? Color.White : Theme.AccentText, authorRect, Theme.Left);
             if (donateRect.Left > authorRect.Right + Theme.S(20))
